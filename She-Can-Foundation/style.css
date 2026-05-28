@@ -140,25 +140,6 @@ header{
 
   line-height:1.7;
 }
-
-.hero-stats{
-  margin-top:2rem;
-
-  display:flex;
-  justify-content:center;
-  gap:3rem;
-  flex-wrap:wrap;
-}
-
-.stat strong{
-  display:block;
-  font-size:1.6rem;
-}
-
-.stat span{
-  font-size:0.8rem;
-}
-
 /* MAIN */
 
 main{

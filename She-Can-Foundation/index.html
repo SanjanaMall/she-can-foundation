@@ -1,155 +1,339 @@
-```javascript id="w1x8q5"
-const form = document.getElementById("contactForm");
+<!DOCTYPE html>
+<html lang="en">
 
-const successBox = document.getElementById("successBox");
+<head>
+  <meta charset="UTF-8" />
 
-const formBody = document.getElementById("formBody");
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-const resetBtn = document.getElementById("resetBtn");
+  <title>She Can Foundation – Contact Us</title>
 
-const submitBtn = document.getElementById("submitBtn");
+  <link rel="stylesheet" href="style.css" />
 
-const nameEl = document.getElementById("name");
+  <link rel="icon" href="assets/favicon.png" />
 
-const emailEl = document.getElementById("email");
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  />
+</head>
 
-const msgEl = document.getElementById("message");
+<body>
 
-const charCount = document.getElementById("charCount");
+  <!-- HEADER -->
 
-/* SUBJECT CHIPS */
+  <header>
 
-document.querySelectorAll(".subject-chip").forEach(chip => {
+    <div class="header-brand">
 
-  chip.addEventListener("click", () => {
+      <div class="logo-mark">
 
-    document.querySelectorAll(".subject-chip")
-      .forEach(c => c.classList.remove("selected"));
+        ♥
+      </div>
 
-    chip.classList.add("selected");
+      <div class="brand">
 
-  });
+        <h1>She Can Foundation</h1>
 
-});
+        <p>Empowering Women & Girls</p>
 
-/* CHAR COUNT */
+      </div>
 
-msgEl.addEventListener("input", () => {
+    </div>
 
-  charCount.textContent =
-    `${msgEl.value.length} / 500`;
+    <nav class="header-nav">
 
-});
+      <a href="#form" class="nav-pill">Contact Us</a>
 
-/* FORM SUBMIT */
+      <a href="#" class="nav-pill">Donate</a>
 
-form.addEventListener("submit", function(e){
+    </nav>
 
-  e.preventDefault();
+  </header>
 
-  let valid = true;
+  <!-- HERO -->
 
-  const emailPattern =
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  <section class="hero">
 
-  /* RESET ERRORS */
+    <div class="hero-circles">
 
-  document.querySelectorAll(".field-error")
-    .forEach(err => err.classList.remove("show"));
+      <span></span>
+      <span></span>
+      <span></span>
 
-  if(nameEl.value.trim() === ""){
+    </div>
 
-    document.getElementById("nameErr")
-      .classList.add("show");
+    <span class="hero-tag">Get in Touch</span>
 
-    valid = false;
-  }
+    <h2>We'd Love to Hear From You</h2>
 
-  if(!emailPattern.test(emailEl.value.trim())){
+    <p>
+      Whether you want to volunteer, donate, partner, or simply learn more —
+      we’d love to connect with you.
+    </p>
 
-    document.getElementById("emailErr")
-      .classList.add("show");
 
-    valid = false;
-  }
+  </section>
 
-  if(msgEl.value.trim() === ""){
+  <!-- MAIN -->
 
-    document.getElementById("msgErr")
-      .classList.add("show");
+  <main>
 
-    valid = false;
-  }
+    <!-- LEFT INFO -->
 
-  if(!valid) return;
+    <aside class="info-panel">
 
-  /* LOADING STATE */
+      <h2 class="info-title">How Can We Help You?</h2>
 
-  submitBtn.innerHTML = `
-    <span class="loader"></span>
-    Sending...
-  `;
+      <p class="info-desc">
+        Reach out to us for volunteering, donations, partnerships,
+        collaborations, or general enquiries.
+      </p>
 
-  submitBtn.disabled = true;
+      <div class="info-items">
 
-  setTimeout(() => {
+        <div class="info-item">
 
-    formBody.style.display = "none";
+          <div class="info-icon">👩</div>
 
-    successBox.classList.add("show");
+          <div>
 
-  }, 1200);
+            <h4>Volunteer With Us</h4>
 
-});
+            <p>Join our mission and become a changemaker.</p>
 
-/* RESET FORM */
+          </div>
 
-resetBtn.addEventListener("click", () => {
+        </div>
 
-  form.reset();
+        <div class="info-item">
 
-  charCount.textContent = "0 / 500";
+          <div class="info-icon">💖</div>
 
-  successBox.classList.remove("show");
+          <div>
 
-  formBody.style.display = "block";
+            <h4>Donate or Sponsor</h4>
 
-  submitBtn.disabled = false;
+            <p>Your support helps us empower more women.</p>
 
-  submitBtn.innerHTML = `
-    <span class="btn-content">
-      Send Message
-    </span>
-  `;
+          </div>
 
-});
+        </div>
 
-/* FAB */
+        <div class="info-item">
 
-const fab = document.getElementById("fab");
+          <div class="info-icon">💬</div>
 
-window.addEventListener("scroll", () => {
+          <div>
 
-  if(window.scrollY > 300){
+            <h4>General Enquiries</h4>
 
-    fab.classList.add("visible");
+            <p>We’d love to answer your questions.</p>
 
-  }else{
+          </div>
 
-    fab.classList.remove("visible");
+        </div>
 
-  }
+      </div>
 
-});
+    </aside>
 
-fab.addEventListener("click", () => {
+    <!-- FORM CARD -->
 
-  window.scrollTo({
+    <div class="form-card" id="form">
 
-    top:0,
-    behavior:"smooth"
+      <!-- SUCCESS -->
 
-  });
+      <div class="success-box" id="successBox">
 
-});
-```
+        <div class="success-ring">✓</div>
+
+        <h3>Form Submitted Successfully</h3>
+
+        <p>
+          Thank you for contacting She Can Foundation.
+          We’ll respond shortly.
+        </p>
+
+        <button class="btn-reset" id="resetBtn">
+          Send Another Message
+        </button>
+
+      </div>
+
+      <!-- FORM BODY -->
+
+      <div class="form-body" id="formBody">
+
+        <div class="form-header">
+
+          <h3>Contact Us</h3>
+
+          <p>Fill in your details below.</p>
+
+        </div>
+
+        <form id="contactForm" novalidate>
+
+          <div class="field-row">
+
+            <div class="field">
+
+              <label for="name">
+                Full Name *
+              </label>
+
+              <input
+                type="text"
+                id="name"
+                placeholder="Enter your name"
+                required
+                aria-required="true"
+              />
+
+              <span class="field-error" id="nameErr">
+                Please enter your name
+              </span>
+
+            </div>
+
+            <div class="field">
+
+              <label for="phone">
+                Phone
+              </label>
+
+              <input
+                type="tel"
+                id="phone"
+                placeholder="+91 9876543210"
+              />
+
+            </div>
+
+          </div>
+
+          <div class="field">
+
+            <label for="email">
+              Email Address *
+            </label>
+
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter your email"
+              required
+              aria-required="true"
+            />
+
+            <span class="field-error" id="emailErr">
+              Please enter a valid email
+            </span>
+
+          </div>
+
+          <div class="field">
+
+            <label>
+              Subject
+            </label>
+
+            <div class="subject-grid">
+
+              <span class="subject-chip selected">
+                General
+              </span>
+
+              <span class="subject-chip">
+                Volunteer
+              </span>
+
+              <span class="subject-chip">
+                Donate
+              </span>
+
+              <span class="subject-chip">
+                Partnership
+              </span>
+
+            </div>
+
+          </div>
+
+          <div class="field">
+
+            <label for="message">
+              Message *
+            </label>
+
+            <textarea
+              id="message"
+              maxlength="500"
+              placeholder="Write your message..."
+              required
+              aria-required="true"
+            ></textarea>
+
+            <div class="char-count" id="charCount">
+              0 / 500
+            </div>
+
+            <span class="field-error" id="msgErr">
+              Please enter your message
+            </span>
+
+          </div>
+
+          <button type="submit" class="btn-submit" id="submitBtn">
+
+            <span class="btn-content">
+
+              Send Message
+
+            </span>
+
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="footer-links">
+
+      <a href="#">Privacy Policy</a>
+
+      <a href="#">About Us</a>
+
+      <a href="#">Donate</a>
+
+    </div>
+
+    <p>
+      © 2026 <strong>She Can Foundation</strong>
+    </p>
+
+  </footer>
+
+  <!-- FAB -->
+
+  <button class="fab" id="fab">
+
+    ↑
+
+  </button>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
+
