@@ -1,0 +1,154 @@
+const form = document.getElementById("contactForm");
+
+const successBox = document.getElementById("successBox");
+
+const formBody = document.getElementById("formBody");
+
+const resetBtn = document.getElementById("resetBtn");
+
+const submitBtn = document.getElementById("submitBtn");
+
+const nameEl = document.getElementById("name");
+
+const emailEl = document.getElementById("email");
+
+const msgEl = document.getElementById("message");
+
+const charCount = document.getElementById("charCount");
+
+/* SUBJECT CHIPS */
+
+document.querySelectorAll(".subject-chip").forEach(chip => {
+
+  chip.addEventListener("click", () => {
+
+    document.querySelectorAll(".subject-chip")
+      .forEach(c => c.classList.remove("selected"));
+
+    chip.classList.add("selected");
+
+  });
+
+});
+
+/* CHAR COUNT */
+
+msgEl.addEventListener("input", () => {
+
+  charCount.textContent =
+    `${msgEl.value.length} / 500`;
+
+});
+
+/* FORM SUBMIT */
+
+form.addEventListener("submit", function(e){
+
+  e.preventDefault();
+
+  let valid = true;
+
+  const emailPattern =
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  /* RESET ERRORS */
+
+  document.querySelectorAll(".field-error")
+    .forEach(err => err.classList.remove("show"));
+
+  if(nameEl.value.trim() === ""){
+
+    document.getElementById("nameErr")
+      .classList.add("show");
+
+    valid = false;
+  }
+
+  if(!emailPattern.test(emailEl.value.trim())){
+
+    document.getElementById("emailErr")
+      .classList.add("show");
+
+    valid = false;
+  }
+
+  if(msgEl.value.trim() === ""){
+
+    document.getElementById("msgErr")
+      .classList.add("show");
+
+    valid = false;
+  }
+
+  if(!valid) return;
+
+  /* LOADING STATE */
+
+  submitBtn.innerHTML = `
+    <span class="loader"></span>
+    Sending...
+  `;
+
+  submitBtn.disabled = true;
+
+  setTimeout(() => {
+
+    formBody.style.display = "none";
+
+    successBox.classList.add("show");
+
+  }, 1200);
+
+});
+
+/* RESET FORM */
+
+resetBtn.addEventListener("click", () => {
+
+  form.reset();
+
+  charCount.textContent = "0 / 500";
+
+  successBox.classList.remove("show");
+
+  formBody.style.display = "block";
+
+  submitBtn.disabled = false;
+
+  submitBtn.innerHTML = `
+    <span class="btn-content">
+      Send Message
+    </span>
+  `;
+
+});
+
+/* FAB */
+
+const fab = document.getElementById("fab");
+
+window.addEventListener("scroll", () => {
+
+  if(window.scrollY > 300){
+
+    fab.classList.add("visible");
+
+  }else{
+
+    fab.classList.remove("visible");
+
+  }
+
+});
+
+fab.addEventListener("click", () => {
+
+  window.scrollTo({
+
+    top:0,
+    behavior:"smooth"
+
+  });
+
+});
+
